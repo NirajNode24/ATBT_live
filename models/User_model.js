@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
                 is: /^\d{10}$/
             }
         },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            
+        },
     }, {
         hooks: {
             beforeCreate: async (user) => {

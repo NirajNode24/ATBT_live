@@ -12,6 +12,6 @@ db.Admin = require('./Admin_model')(sequelize, DataTypes)
 db.Entite = require('./Entite_model')(sequelize, DataTypes)
 db.User = require('./User_model')(sequelize, DataTypes)
 
-db.sequelize.sync({ force: false });
-console.log("All models were synchronized successfully.");
+db.sequelize.sync({ alter: true });
+console.log("All models were alter successfully.");
 module.exports = db;
