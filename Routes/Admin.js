@@ -14,6 +14,7 @@ router.get('/list/:id', Admin.Get_Admin)
 router.put('/update/:id', Admin.Update_Admin)
 router.delete('/delete/:id', Admin.Delete_Admin)
 router.post('/create-user', Admin.Create_User)
+router.delete('/delete-user/:id', Admin.Delete_User)
 
 
 module.exports = router;

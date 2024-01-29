@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
 
       // allowNull defaults to true
+    },
+    EntityPhoto: {
+      type: DataTypes.BLOB('long'),
+      allowNull: true
     }
   }, {
     // Other model options go here

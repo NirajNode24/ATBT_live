@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+            unique: 'email',
             validate: {
                 isEmail: true
             }
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         image: {
             type: DataTypes.STRING,
             allowNull: true,
-            
+
         },
     }, {
         hooks: {

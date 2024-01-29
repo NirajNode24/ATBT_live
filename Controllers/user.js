@@ -119,19 +119,4 @@ const Update_Password = async (req, res) => {
     }
 };
 
-
-const Delete_User = async (req, res) => {
-    try {
-        await User.destroy({
-            where: { id: req.params.id },
-            // truncate: true
-        });
-
-        res.status(200).json({ message: `User deleted successfully ${req.params.id}` });
-    } catch (error) {
-        console.error("Error deleting User:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-module.exports = { Login_User, List_User, Get_User, Update_User, Delete_User, Update_Password };
+module.exports = { Login_User, List_User, Get_User, Update_User, Update_Password };

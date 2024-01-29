@@ -127,7 +127,21 @@ const Delete_Admin = async (req, res) => {
   }
 };
 
+const Delete_User = async (req, res) => {
+  try {
+      await User.destroy({
+          where: { id: req.params.id },
+          // truncate: true
+      });
 
-module.exports = { Add_Admin, List_Admin, Get_Admin, Update_Admin, Delete_Admin, Login_Admin, Create_User };
+      res.status(200).json({ message: `User deleted successfully ${req.params.id}` });
+  } catch (error) {
+      console.error("Error deleting User:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+module.exports = { Add_Admin, List_Admin, Get_Admin, Update_Admin, Delete_Admin, Login_Admin, Create_User, Delete_User };
 
 

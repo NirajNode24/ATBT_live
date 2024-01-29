@@ -12,7 +12,6 @@ router.get('/list', User.List_User)
 router.get('/list/:id', User.Get_User)
 router.put('/update/:id', User.Update_User)
 router.put('/changePassword/:id', User.Update_Password)
-router.delete('/delete/:id', User.Delete_User)
 
 
 module.exports = router;
