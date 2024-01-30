@@ -35,9 +35,23 @@ const List_User = async (req, res) => {
             };
         }
 
+        const totalUsers = await User.count({ where: options.where });
+        const totalPages = Math.ceil(totalUsers / pageSize);
         const users = await User.findAll(options);
 
-        res.status(200).json({ users });
+        // Calculate the range of users being displayed
+        const startUser = (page - 1) * pageSize + 1;
+        const endUser = Math.min(page * pageSize, totalUsers);
+
+        res.status(200).json({
+            users,
+            totalUsers,
+            totalPages,
+            currentPage: page,
+            pageSize,
+            startUser,
+            endUser,
+        });
     } catch (error) {
         console.error("Error fetching Users:", error);
         res.status(500).json({ error: "Internal Server Error" });

@@ -94,19 +94,37 @@ const List_Entite = async (req, res) => {
 
     const { count, rows: Entites } = await Entite.findAndCountAll(options);
 
+    // Calculate the range of entities being displayed
+    const startEntity = (page - 1) * pageSize + 1;
+    const endEntity = Math.min(page * pageSize, count);
+
     const totalPages = Math.ceil(count / pageSize);
+
+    console.log({
+      Entites,
+      totalEntities: count,
+      totalPages,
+      currentPage: page,
+      pageSize,
+      startEntity,
+      endEntity,
+    })
 
     res.status(200).json({
       Entites,
-      currentPage: page,
+      totalEntities: count,
       totalPages,
-      totalEntries: count
+      currentPage: page,
+      pageSize,
+      startEntity,
+      endEntity,
     });
   } catch (error) {
     console.error("Error fetching Entites:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
 const Get_Entite = async (req, res) => {
   try {
