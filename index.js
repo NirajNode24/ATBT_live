@@ -27,7 +27,7 @@ app.use('/auth', Auth_router)
 app.use('/user', User_router)
 
 app.get('/', (req, res) => {
-  res.send("API")
+  res.send("API 1/31/24-0.1")
 
 })
 
