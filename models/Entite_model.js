@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     // Model attributes are defined here
     Entite_Name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     Description: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
       // allowNull defaults to true
+      allowNull: true
     },
     Member: {
       type: DataTypes.STRING,
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       // allowNull defaults to true
     },
     EntityPhoto: {
-      type: DataTypes.BLOB('long'),
+      type: DataTypes.STRING,
       allowNull: true
     }
   }, {
