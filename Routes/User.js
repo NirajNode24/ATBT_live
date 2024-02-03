@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
 router.get('/list', User.List_User)
 router.get('/list/:id', User.Get_User)
 router.put('/update/:id', User.Update_User)
-router.put('/changePassword/:id', User.Update_Password)
+router.put('/changepassword/:id', User.Update_Password)
+router.put('/forgotpassword', User.Reset_Password)
 
 
 module.exports = router;

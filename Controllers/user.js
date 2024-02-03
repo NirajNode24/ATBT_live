@@ -1,5 +1,6 @@
 var db = require('../models/index');
 const bcrypt = require('bcrypt');
+const transporter = require('../utils/nodemailer')
 const User = db.User
 const { Op } = require('sequelize');
 
@@ -109,6 +110,7 @@ const Update_User = async (req, res) => {
     }
 };
 const Update_Password = async (req, res) => {
+    console.log(req.body)
     try {
         const { newPassword } = req.body;
 
@@ -133,4 +135,40 @@ const Update_Password = async (req, res) => {
     }
 };
 
-module.exports = { Login_User, List_User, Get_User, Update_User, Update_Password };
+const Reset_Password = async (req, res) => {
+    try {
+        const { email } = req.query;
+
+        if (!email) {
+            return res.status(400).json({ error: 'Invalid email format' });
+        }
+
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const mailData = {
+            from: 'nirajkr00024@gmail.com',
+            to: email,
+            subject: 'Reset Password',
+            html: `
+                <p>You are receiving this email because you (or someone else) have requested the reset of the password for your account.</p>
+                <p>Please click on the following link, or paste this into your browser to complete the process:</p>
+                <a href="https://main.d4f46sk4x577g.amplifyapp.com/changepassword/${user.id}">Reset Password Link</a>
+                <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+            `,
+        };
+
+        await transporter.sendMail(mailData);
+
+        res.status(200).json({ message: `Password reset link sent successfully to ${email}` });
+    } catch (error) {
+
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+
+    }
+}
+
+module.exports = { Login_User, List_User, Get_User, Update_User, Update_Password, Reset_Password };

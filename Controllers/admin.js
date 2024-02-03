@@ -129,15 +129,15 @@ const Delete_Admin = async (req, res) => {
 
 const Delete_User = async (req, res) => {
   try {
-      await User.destroy({
-          where: { id: req.params.id },
-          // truncate: true
-      });
+    await User.destroy({
+      where: { id: req.params.id },
+      // truncate: true
+    });
 
-      res.status(200).json({ message: `User deleted successfully ${req.params.id}` });
+    res.status(200).json({ message: `User deleted successfully ${req.params.id}` });
   } catch (error) {
-      console.error("Error deleting User:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error deleting User:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
