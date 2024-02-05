@@ -26,7 +26,7 @@ app.use('/user', User_router)
 app.use('/toggle',Toggle_router)
 
 app.get('/', (req, res) => {
-  res.send("API beta 05")
+  res.send("API beta 05de")
 })
 app.use(errorHander);
 app.use(routeNotFound);
