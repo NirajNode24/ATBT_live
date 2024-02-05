@@ -4,6 +4,7 @@ const cors = require('cors')
 require('./models')
 const Admin_router = require('./Routes/Admin')
 const Entite_router = require('./Routes/Entite')
+const Toggle_router = require('./Routes/Toggle')
 const emailRoute = require('./mail/mail')
 const Auth_router = require('./Routes/Auth')
 const User_router = require('./Routes/User')
@@ -22,6 +23,7 @@ app.use('/entite', Entite_router);
 app.use('/api', emailRoute);
 app.use('/auth', Auth_router)
 app.use('/user', User_router)
+app.use('/toggle',Toggle_router)
 
 app.get('/', (req, res) => {
   res.send("API 02/05/24-v1")

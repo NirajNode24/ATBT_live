@@ -34,6 +34,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
 
         },
+        User_status: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue : true
+      
+            // allowNull defaults to true
+          },
+        User_remarks_history: {
+            type: DataTypes.TEXT,
+            allowNull: true
+            // allowNull defaults to true
+          },  
     }, {
         hooks: {
             beforeCreate: async (user) => {
