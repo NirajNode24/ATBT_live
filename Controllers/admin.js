@@ -33,7 +33,7 @@ const Create_User = async (req, res) => {
     to: req.body.email,
     subject: 'Sending Email using Node.js',
     text: 'User Created!',
-    html: `<b>Hey there your account has been created please use the below credentials to login</b><br><a href="https://main.d4f46sk4x577g.amplifyapp.com/login">login</a></b><br>email:${req.body.email} password: ${req.body.password}<br/>`,
+    html: `<b>Hey there your account has been created please use the below credentials to login</b><br><a href="https://main.d4f46sk4x577g.amplifyapp.com/login">login</a></b><br>email:${req.body.email} password: ${req?.body?.password ?? "suadmin"}<br/>`,
   };
   try {
     var data = (req.body)
