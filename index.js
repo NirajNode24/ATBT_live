@@ -19,14 +19,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/profile', express.static('Public/Images'));
 app.use('/admin', authVerify, Admin_router);
-app.use('/entite', Entite_router);
+app.use('/entity', Entite_router);
 app.use('/api', emailRoute);
 app.use('/auth', Auth_router)
 app.use('/user', User_router)
 app.use('/toggle',Toggle_router)
 
 app.get('/', (req, res) => {
-  res.send("API 02/05/24-v1")
+  res.send("API beta 05")
 })
 app.use(errorHander);
 app.use(routeNotFound);

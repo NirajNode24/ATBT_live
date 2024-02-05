@@ -5,33 +5,32 @@ const User = db.User
 
 
 const Add_toggle = async (req, res) => {
-    try {
-      const userId = req.query.id;
-    
-      // Find the user by ID
-      const user = await User.findByPk(userId);
+  try {
+    const userId = req.query.id;
   
-      const newStatus = !user.User_status;
-  
-      await User.update({ User_status: newStatus }, { where: { id: userId } });
+    // Find the user by ID
+    const user = await User.findByPk(userId);
 
-     // Record remarks and current status into history table
-      await User.update({
-                User_remarks_history: "this is remak",
-            });
-  
-      const updatedUser = await User.findByPk(userId);
-      
-      res.status(200).json({ 
-        message: `User status updated successfully for ID: ${userId}`, 
-        user: updatedUser 
-      });
-  
-    } catch (error) {
-      console.error("Error updating user status:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
+    // Toggle the User_status
+    const newStatus = !user.User_status;
+
+    // Update the User_status in the database
+    await User.update({ User_status: newStatus }, { where: { id: userId } });
+
+    // Fetch the updated user
+    const updatedUser = await User.findByPk(userId);
+
+    res.status(200).json({ 
+      message: `User status updated successfully for ID: ${userId}`, 
+      user: updatedUser 
+    });
+
+  } catch (error) {
+    console.error("Error updating user status:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
   
   
   
