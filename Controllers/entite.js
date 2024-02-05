@@ -1,3 +1,4 @@
+require('dotenv').config();
 var db = require('../models/index');
 const Entite = db.Entite;
 const User = db.User
@@ -8,8 +9,14 @@ const { Op } = require('sequelize');
 const Add_Entite = async (req, res) => {
   try {
     var data = (req.body)
-    console.log(data)
-    const Entites = await Entite.create(data);
+    const path = `${process.env.IMAGE_URI}/${req.file.filename}`
+    console.log(path, req.body)
+    const Entites = await Entite.create({
+      Entite_Name: req.body.name,
+      Description: req.body.description,
+      Member: req.body.members,
+      EntityPhoto: path
+    });
     res.status(201).json({ message: " created successfully", Entites });
   } catch (error) {
     // Handle any errors that occur during the Admin creation process
@@ -100,15 +107,15 @@ const List_Entite = async (req, res) => {
 
     const totalPages = Math.ceil(count / pageSize);
 
-    console.log({
-      Entites,
-      totalEntities: count,
-      totalPages,
-      currentPage: page,
-      pageSize,
-      startEntity,
-      endEntity,
-    })
+    // console.log({
+    //   Entites,
+    //   totalEntities: count,
+    //   totalPages,
+    //   currentPage: page,
+    //   pageSize,
+    //   startEntity,
+    //   endEntity,
+    // })
 
     res.status(200).json({
       Entites,
@@ -134,7 +141,7 @@ const Get_Entite = async (req, res) => {
         id: req.params.id
       }
     });
-    console.log(Entites)
+    // console.log(Entites)
     res.status(200).json({ message: `your id is:${req.params.id}`, Entites });
   } catch (error) {
     // Handle any errors that occur during the Admin creation process

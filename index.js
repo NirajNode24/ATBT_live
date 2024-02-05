@@ -11,7 +11,7 @@ const errorHander = require('./middlewares/errorHandler.middleware')
 const routeNotFound = require('./middlewares/routeNotfound.middleware')
 const authVerify = require('./middlewares/authVerify.middleware')
 const app = express()
-const port = 3001
+const port = 3000
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,7 +24,7 @@ app.use('/auth', Auth_router)
 app.use('/user', User_router)
 
 app.get('/', (req, res) => {
-  res.send("API 1/31/24-0.1")
+  res.send("API 02/05/24-v1")
 })
 app.use(errorHander);
 app.use(routeNotFound);
