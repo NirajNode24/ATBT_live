@@ -29,7 +29,7 @@ app.use('/form', Form_router)
 
 
 app.get('/', (req, res) => {
-  res.send("API beta 05de")
+  res.send("API From Cus")
 })
 app.use(errorHander);
 app.use(routeNotFound);
