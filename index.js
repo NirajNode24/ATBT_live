@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 require('./models')
+const Form_router =require('./Routes/Custom_form')
 const Admin_router = require('./Routes/Admin')
 const Entite_router = require('./Routes/Entite')
 const Toggle_router = require('./Routes/Toggle')
@@ -24,6 +25,8 @@ app.use('/api', emailRoute);
 app.use('/auth', Auth_router)
 app.use('/user', User_router)
 app.use('/toggle',Toggle_router)
+app.use('/form', Form_router)
+
 
 app.get('/', (req, res) => {
   res.send("API beta 05de")
