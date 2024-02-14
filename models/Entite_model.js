@@ -4,7 +4,6 @@ const sequelize = require('../DB/dbconncet');
 const Custom = async (req, res) => {
   try {
     var data = req.body.arrayOfObjects; 
-    var EntityName = req.body.Name;
     const inputnames = data.map(item => item.inputname);
     var Name = inputnames[0];
     var Image = inputnames[1];

@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
             // allowNull defaults to true
           },
         User_remarks_history: {
-            type: DataTypes.TEXT,
+            type: DataTypes.JSON,
             allowNull: true
             // allowNull defaults to true
           },  

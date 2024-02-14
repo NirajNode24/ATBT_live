@@ -1,39 +1,35 @@
+const db = require('../models/index');
+const User123 = db.User
+const { DataTypes, Model } = require('sequelize');
 
-var db = require('../models/index');
-const User = db.User
-
-
-
+// Your controller function with Sequelize ORM
 const Add_toggle = async (req, res) => {
+  const id = req.params.id;
+  const user_remarks_history = req.body.user_remarks_history;
+  const user_status = req.body.user_status;
+
   try {
-    const userId = req.query.id;
-  
-    // Find the user by ID
-    const user = await User.findByPk(userId);
+    // Find the user by id
+    const user = await User123.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
-    // Toggle the User_status
-    const newStatus = !user.User_status;
-
-    // Update the User_status in the database
-    await User.update({ User_status: newStatus }, { where: { id: userId } });
-
-    // Fetch the updated user
-    const updatedUser = await User.findByPk(userId);
-
-    res.status(200).json({ 
-      message: `User status updated successfully for ID: ${userId}`, 
-      user: updatedUser 
+    // Update the user
+    const admin = await user.update({
+      User_remarks_history: user_remarks_history,
+      User_status: user_status
     });
+    res.status(201).json({ message: "updated user status", admin });
 
-  } catch (error) {
-    console.error("Error updating user status:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+  } catch (err) {
+    console.error("Error updating user:", err);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-  
-  
-  
 
 
-  module.exports = { Add_toggle };
+module.exports = { Add_toggle };
+
+
