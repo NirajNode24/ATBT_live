@@ -1,16 +1,16 @@
 const { Sequelize } = require('sequelize');
 
-// const sequelize = new Sequelize('atbtclg', 'rootadmin', 'rootadmin', {
-//   host: 'atbt-db.cwuyjszxxfxc.us-east-1.rds.amazonaws.com',
-//   dialect: 'mysql',
-//   logging: false
-// });
-
-const sequelize = new Sequelize('atbtclg', 'root', 'root123', {
-  host: 'localhost',
+const sequelize = new Sequelize('atbtclg', 'rootadmin', 'rootadmin', {
+  host: 'atbt-db.cwuyjszxxfxc.us-east-1.rds.amazonaws.com',
   dialect: 'mysql',
   logging: false
 });
+
+// const sequelize = new Sequelize('atbtclg', 'root', 'root123', {
+//   host: 'localhost',
+//   dialect: 'mysql',
+//   logging: false
+// });
 
 // for pg Admin
 // const sequelize = new Sequelize('atbtclg', 'postgres', 'root', {

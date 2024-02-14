@@ -30,6 +30,6 @@ Permission.belongsToMany(Role, { through: 'RolePermission' });
 Permission.belongsToMany(Module, { through: db.PermissionModule }); // Verify that Permission model is defined properly
 Module.belongsToMany(Permission, { through: db.PermissionModule });
 
-db.sequelize.sync();
+db.sequelize.sync({alter:true});
 console.log("All models were alter successfully.");
 module.exports = db;

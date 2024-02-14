@@ -1,6 +1,5 @@
 const db = require('../models/index');
-const User123 = db.User
-const { DataTypes, Model } = require('sequelize');
+const User = db.User
 
 // Your controller function with Sequelize ORM
 const Add_toggle = async (req, res) => {
@@ -10,7 +9,8 @@ const Add_toggle = async (req, res) => {
 
   try {
     // Find the user by id
-    const user = await User123.findByPk(id);
+    const user = await User.findByPk(id);
+    console.log(user)
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }

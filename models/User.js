@@ -6,19 +6,19 @@ module.exports = (sequelize, DataTypes) => {
 const User = sequelize.define('User', {
     userName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     password: {
         type: DataTypes.STRING,
         defaultValue: "suadmin",
-        allowNull: false,
+        allowNull: true,
         validate: {
             len: [6, 255]
         }
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: 'email',
         validate: {
             isEmail: true
@@ -26,7 +26,7 @@ const User = sequelize.define('User', {
     },
     phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
             is: /^\d{10}$/
         }
@@ -44,13 +44,13 @@ const User = sequelize.define('User', {
         // allowNull defaults to true
     },
     User_remarks_history: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: true
         // allowNull defaults to true
     },
     roleId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
     hooks: {
